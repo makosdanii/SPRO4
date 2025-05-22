@@ -27,7 +27,7 @@
 #define I_ZZ 14.2e-3  // Moments of inertia [kg·m²]
 #define d_t 1.1e-6    // Torque drag coefficient [N·m·s²]
 #define l 0.24        // Distance from CoG to propeller axis [m]
-#define b 54.2e-6     // Thrust coefficient [N·s²]
+#define b 5.42e-5     // Thrust coefficient [N·s²]
 
 #define MIN_PULSE_WIDTH 1000 // minimum pulse width in microseconds [us]
 #define MAX_PULSE_WIDTH 2000 // Maximum pulse with in microseconds [us]
