@@ -13,17 +13,20 @@ public:
   /// @param  Ts Sampling time (in seconds)
   /// @param  Max max output value
   /// @param  Min min output value
-  PID(float Kp, float Ki, float Kd, float Ts, uint16_t Max, uint16_t Min)
-    : k_p(Kp), k_i(Ki), k_d(Kd), T_s(Ts), max(Max), min(Min) {} // Constructor initializer
+  /// @param  N ???
+  PID(float Kp, float Ki, float Kd, float Ts, uint16_t Max, uint16_t Min, float N)
+    : k_p(Kp), k_i(Ki), k_d(Kd), T_s(Ts), max(Max), min(Min), N(N) {} // Constructor initializer
 
   static void initializeMotors();
   float calculatePID(float setpoint, float measured); // Calculates
 
 private:
-  const float k_p, T_s, k_i, k_d; // Constant member values
+  const float k_p, T_s, k_i, k_d, N; // Constant member values
   const uint16_t max, min;        // Output clamping values (to avoid actuator saturation)
-  float previous_error = 0;       // Initial value
-  float previous_integral = 0;    // Initial value
+  float previous_error = 0;       // sets Initial value
+  float previous_ef = 0;          // Previous filtered error
+  float integral = 0;             // sets Initial value
+  float alpha = (T_s*N)/(2+T_s*N);// first-order low-pass IIR filter Coefficinet??? or something
 };
 
 // Declare PID objects
